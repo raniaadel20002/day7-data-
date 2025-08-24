@@ -56,43 +56,40 @@ app.get("/profile", (req, res)  => {
     res.json(filteredUsers);
 });
 
-app.post("/register", (req, res)  => {
+app.post("/register", (req, res) => {
     // body should contain these info username, email, password
-const { username, email, password } = req.body;
+    const { username, email, password } = req.body;
 
-if (!username || !email || !password) {
-    res.json({ error: "All fields are required" });
-    return;
-}
-const userExists = users.some(user => user.username === username || user.email === email);
-if (userExists) {
-    res.json({ error: "User already exists" });
-    return;
-}
-const user = { username, email, password };
-users.push(user);
+    if (!username || !email || !password) {
+        return res.json({ error: "All fields are required" });
+
+    }
+    const userExists = users.some(user => user.username === username || user.email === email);
+    if (userExists) {
+        return res.json({ error: "User already exists" });
+
+    }
+    const user = { username, email, password };
+    users.push(user);
     // KEEP THIS CODE AFTER ADDING USER TO USERS ARRAY
-    res.json({ message: "User registered successfully", user: user});
-    saveusers(users, "data/users.json");
-   
+    res.json({ message: "User registered successfully", user });
+    saveTasks(users, "data/users.json");
+
 });
 
-app.post("/login", (req, res)  => {
+app.post("/login", (req, res) => {
     const { username, email, password } = req.body;
-    if (!username || !email || !password) {
-        res.json({ error: "All fields are required" });
-        return;
+    if ((!username && !email) || !password) {
+        return res.json({ error: "All fields are required" });
     }
     const user = users.find(user => user.username === username || user.email === email);
     if (!user) {
-        res.json({ error: "User not found" });
-        return;
+        return res.json({ error: "User not found" });
     }
     if (user.password !== password) {
-        res.json({ error: "Invalid password" });
-        return;
+        return res.json({ error: "Invalid password" });
     }
-    res.json({ message: "User logged in successfully", user: user});
+    res.json({ message: "User logged in successfully", user });
     // body should contain these info username or email, password
 });
 

@@ -1,0 +1,24 @@
+{
+  "name": "data",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/raniaadel20002/day7-data-#readme",
+  "bugs": {
+    "url": "https://github.com/raniaadel20002/day7-data-/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raniaadel20002/day7-data-.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "bouns.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
